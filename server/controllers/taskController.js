@@ -1,6 +1,6 @@
 import Task from "../models/Task.js";
 
-// @desc Add task
+// Add task
 export const addTask = async (req, res) => {
   try {
     const { title, description, status, order } = req.body;
@@ -16,20 +16,20 @@ export const addTask = async (req, res) => {
   }
 };
 
-// @desc Get all tasks
+// Get all tasks
 export const getTasks = async (req, res) => {
   const tasks = await Task.find().sort({ order: 1 });
   res.json(tasks);
 };
 
-// @desc Get single task
+// Get single task
 export const getTaskById = async (req, res) => {
   const task = await Task.findById(req.params.id);
   if (!task) return res.status(404).json({ error: "Task not found" });
   res.json(task);
 };
 
-// @desc Update task
+// Update task
 export const updateTask = async (req, res) => {
   const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -39,14 +39,14 @@ export const updateTask = async (req, res) => {
   res.json(task);
 };
 
-// @desc Delete task
+// Delete task
 export const deleteTask = async (req, res) => {
   const task = await Task.findByIdAndDelete(req.params.id);
   req.io.emit("taskDeleted", req.params.id);
   res.json({ success: true });
 };
 
-// @desc Update status only
+// Update status only
 export const updateStatus = async (req, res) => {
   const { status } = req.body;
   const task = await Task.findByIdAndUpdate(

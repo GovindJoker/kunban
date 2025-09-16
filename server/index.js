@@ -12,8 +12,8 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 const corsOptions = {
-  origin: "http://localhost:3000", // frontend URL
-  credentials: true,               // allow cookies and auth headers
+  origin: "http://localhost:3000", 
+  credentials: true,               
 };
 // Middleware
 app.use(cors(corsOptions));
@@ -31,7 +31,7 @@ const io = new Server(httpServer, {
 });
 socketHandler(io);
 
-// Make io available inside controllers
+
 app.use((req, res, next) => {
   req.io = io;
   next();
