@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import { Droppable } from "@hello-pangea/dnd";
 import TaskCard from "./TaskCard";
-import {  Task } from "../redux/slices/taskSlice";
-import { useAppDispatch } from "../redux/hooks";
+import {  Task } from "../redux/slices/taskSlice"
 import { addTask } from "../lib/api";
 
 interface ColumnProps {
@@ -14,7 +13,6 @@ interface ColumnProps {
 }
 
 export default function Column({ title, droppableId, tasks }: ColumnProps) {
-  const dispatch = useAppDispatch();
   const [newTask, setNewTask] = useState("");
 
  const handleAddTask = async () => {
