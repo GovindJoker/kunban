@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 import { Droppable } from "@hello-pangea/dnd";
 import TaskCard from "./TaskCard";
-import { removeTaskLocal, Task, updateTaskLocal } from "../redux/slices/taskSlice";
+import {  Task } from "../redux/slices/taskSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { addTask } from "../lib/api";
-import { addTaskLocal } from "../redux/slices/taskSlice";
-import { v4 as uuidv4 } from "uuid";
 
 interface ColumnProps {
   title: string;

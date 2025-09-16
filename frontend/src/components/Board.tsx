@@ -12,9 +12,6 @@ import {
 } from "../redux/slices/taskSlice";
 import {
   getTasks,
-  updateTask,
-  addTask,
-  deleteTask,
   updateStatus,
 } from "../lib/api";
 import { initSocket } from "../lib/socket";
