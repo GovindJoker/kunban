@@ -15,6 +15,7 @@ import {
   updateStatus,
 } from "../lib/api";
 import { initSocket } from "../lib/socket";
+import { toast } from "react-toastify";
 
 export default function Board() {
   const dispatch = useAppDispatch();
@@ -75,7 +76,9 @@ export default function Board() {
 
     try {
       await updateStatus(draggableId, destination.droppableId);
+      toast.success("Task status updated!");
     } catch (err) {
+        toast.success("Task status updated!");
       console.error("Update failed:", err);
     }
   };

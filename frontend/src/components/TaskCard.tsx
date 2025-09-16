@@ -6,6 +6,7 @@ import { Task } from "../redux/slices/taskSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { deleteTask, updateTask } from "../lib/api";
 import { removeTaskLocal, updateTaskLocal } from "../redux/slices/taskSlice";
+import { toast } from "react-toastify";
 
 interface TaskCardProps {
   task: Task;
@@ -21,7 +22,9 @@ export default function TaskCard({ task, index }: TaskCardProps) {
     dispatch(removeTaskLocal(task.id));
     try {
       await deleteTask(task.id);
+      toast.success("Task deleted!");
     } catch (err) {
+        toast.error("Failed to delete task.");
       console.error("Delete failed:", err);
     }
   };
@@ -31,7 +34,9 @@ export default function TaskCard({ task, index }: TaskCardProps) {
     dispatch(updateTaskLocal({ ...task, title }));
     try {
       await updateTask({ id: task.id, title });
+      toast.success("Task updated!");
     } catch (err) {
+        toast.error("Failed to update task.");
       console.error("Update failed:", err);
     }
   };

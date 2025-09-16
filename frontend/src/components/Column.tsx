@@ -5,6 +5,8 @@ import { Droppable } from "@hello-pangea/dnd";
 import TaskCard from "./TaskCard";
 import {  Task } from "../redux/slices/taskSlice"
 import { addTask } from "../lib/api";
+import { toast } from "react-toastify";
+
 
 interface ColumnProps {
   title: string;
@@ -25,8 +27,10 @@ export default function Column({ title, droppableId, tasks }: ColumnProps) {
       order: tasks.length,
     });
     setNewTask(""); // clear input
+    toast.success("Task added successfully!");
     // No dispatch here, socket will handle update
   } catch (err) {
+    toast.error("Failed to add task.");
     console.error("Add task failed:", err);
   }
 };
